@@ -1,6 +1,7 @@
 """Cafeteria menu and daily specials.
 
 Prints the fixed menu with a loop, then asks for a day of the week and uses conditionals to decide which item is the special.
+No special is offered on weekends or for invalid days. The special is printed with the original price and the discounted price, which is calculated by a function.
 """
 
 MENU = [
