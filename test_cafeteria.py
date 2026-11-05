@@ -75,7 +75,7 @@ class SpecialTests(unittest.TestCase):
 class ProgramRunTests(unittest.TestCase):
     def test_monday_run_prints_menu_special_and_type(self):
         result = run_program("Monday")
-        self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.returncode, 0, result.stderr)
         out = result.stdout
         for name, price in cafeteria.MENU:
             self.assertIn(name, out)
@@ -87,14 +87,14 @@ class ProgramRunTests(unittest.TestCase):
 
     def test_invalid_day_run_says_no_special(self):
         result = run_program("Funday")
-        self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("No special today.", result.stdout)
         self.assertIn("<class 'float'>", result.stdout)
         self.assertNotIn("Today's special:", result.stdout)
 
     def test_program_exits_after_one_answer(self):
         result = run_program("Monday")
-        self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stderr, "")
         last_line = result.stdout.strip().splitlines()[-1]
         self.assertEqual(last_line, "Discount type: <class 'float'>")
